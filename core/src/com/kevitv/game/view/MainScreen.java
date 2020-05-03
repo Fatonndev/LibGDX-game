@@ -1,11 +1,13 @@
 package com.kevitv.game.view;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.kevitv.game.logic.Draw;
 import com.kevitv.game.logic.World;
 
 public class MainScreen implements Screen {
@@ -32,6 +34,18 @@ public class MainScreen implements Screen {
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+
+        batch.begin();
+
+        Draw.draw();
+
+        camera.update();
+
+        batch.end();
+
+        if(ScreenManager.getCurrentUpdate()!=null)
+            ScreenManager.getCurrentUpdate().Draw(batch);
+
         if(ScreenManager.getCurrentScreen()!=null)
             ScreenManager.getCurrentScreen().render(batch);
 
@@ -45,8 +59,8 @@ public class MainScreen implements Screen {
             ScreenManager.getCurrentScreen().resize(width,height);
 
         float aspectRatio = (float) height/width;
-        camera = new OrthographicCamera(20f, 20f*aspectRatio);
-        camera.zoom = 0.9f;
+        camera = new OrthographicCamera(230f, 200f*aspectRatio);
+        camera.zoom = 0.0009f;
         camera.update();
     }
 

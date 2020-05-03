@@ -13,8 +13,11 @@ public class World {
         for(int xi = 0; xi < x; xi++) {
             for(int yi = 0; yi < y; yi++) {
                 tiles[xi][yi] = new Tile(xi,yi);
+                tiles[xi][yi].setXY(xi, yi);
             }
         }
+
+        tile(2,2).setBlock(Blocks.wall);
     }
 
     public Tile tile(int x, int y) {
