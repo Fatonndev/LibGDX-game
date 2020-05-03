@@ -31,7 +31,6 @@ public class Block extends Update {
     }
 
     public void load() {
-        if(name.equals("air")) return;
         texture = Assets.getTexture(name);
 
         object = new Sprite(texture);

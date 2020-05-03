@@ -1,33 +1,40 @@
 
 atlas1.png
-size: 16,16
+size: 32,16
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+air
+  rotate: false
+  xy: 18, 13
+  size: 2, 2
+  orig: 2, 2
+  offset: 0, 0
+  index: -1
 bullet
   rotate: false
-  xy: 8, 6
+  xy: 7, 2
   size: 4, 4
   orig: 4, 4
   offset: 0, 0
   index: -1
 null
   rotate: false
-  xy: 0, 8
+  xy: 0, 7
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 player
   rotate: false
-  xy: 0, 0
+  xy: 9, 7
   size: 8, 8
   orig: 8, 8
   offset: 0, 0
   index: -1
 wall
   rotate: false
-  xy: 8, 10
+  xy: 0, 0
   size: 6, 6
   orig: 6, 6
   offset: 0, 0

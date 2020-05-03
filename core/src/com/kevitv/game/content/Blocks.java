@@ -12,6 +12,7 @@ public class Blocks {
         air = new Floor("air"){{
         }};
         wall = new Block("wall"){{
+            name="wall";
         }};
     }
 

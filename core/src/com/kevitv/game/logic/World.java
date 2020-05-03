@@ -1,6 +1,7 @@
 package com.kevitv.game.logic;
 
 import com.kevitv.game.content.Blocks;
+import com.kevitv.game.utils.Log;
 
 public class World {
 
@@ -17,7 +18,7 @@ public class World {
             }
         }
 
-        tile(2,2).setBlock(Blocks.wall);
+        tile(1,1).setBlock(Blocks.wall);
     }
 
     public Tile tile(int x, int y) {

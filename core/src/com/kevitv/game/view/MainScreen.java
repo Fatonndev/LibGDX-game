@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.kevitv.game.content.Blocks;
 import com.kevitv.game.logic.Draw;
 import com.kevitv.game.logic.World;
 
@@ -38,6 +39,7 @@ public class MainScreen implements Screen {
         batch.begin();
 
         Draw.draw();
+        world.tile(1,1).setBlock(Blocks.wall);
 
         camera.update();
 
