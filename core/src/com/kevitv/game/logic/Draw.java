@@ -1,6 +1,8 @@
 package com.kevitv.game.logic;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.kevitv.game.content.Blocks;
+import com.kevitv.game.model.Block;
 import com.kevitv.game.view.MainScreen;
 
 

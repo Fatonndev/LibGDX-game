@@ -6,9 +6,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.kevitv.game.logic.Update;
 import com.kevitv.game.utils.Assets;
-import com.kevitv.game.utils.Log;
 
-public class Block extends Update {
+public class Block extends Update implements Cloneable {
 
     public int size = 1;
     public int x = 0;
@@ -28,6 +27,11 @@ public class Block extends Update {
     public Block(String name) {
         this.name = name;
         load();
+    }
+
+    @Override
+    public Block clone() throws CloneNotSupportedException {
+        return (Block) super.clone();
     }
 
     public void load() {

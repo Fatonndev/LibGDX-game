@@ -18,7 +18,7 @@ public class World {
             }
         }
 
-        tile(1,1).setBlock(Blocks.wall);
+
     }
 
     public Tile tile(int x, int y) {

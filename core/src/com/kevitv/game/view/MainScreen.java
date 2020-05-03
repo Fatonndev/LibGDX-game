@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.kevitv.game.content.Blocks;
 import com.kevitv.game.logic.Draw;
 import com.kevitv.game.logic.World;
+import com.kevitv.game.model.Block;
 
 public class MainScreen implements Screen {
 
@@ -39,7 +40,12 @@ public class MainScreen implements Screen {
         batch.begin();
 
         Draw.draw();
+
+        world.tile(2,1).setBlock(Blocks.wall);
         world.tile(1,1).setBlock(Blocks.wall);
+        world.tile(1,2).setBlock(Blocks.wall);
+        world.tile(1,3).setBlock(Blocks.wall);
+        world.tile(2,3).setBlock(Blocks.wall);
 
         camera.update();
 

@@ -18,11 +18,15 @@ public class Tile {
         block.load();
     }
 
-    public void setBlock(Block block) {
-        this.block=block;
-        block.x=x;
-        block.y=y;
-        block.load();
+    public void setBlock(Block block1) {
+        try {
+            this.block = block1.clone();
+            this.block.x=x;
+            this.block.y=y;
+            block.load();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 
     public Tile(int x, int y, Block block) {
