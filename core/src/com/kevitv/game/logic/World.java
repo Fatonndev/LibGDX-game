@@ -1,13 +1,14 @@
 package com.kevitv.game.logic;
 
-import com.kevitv.game.content.Blocks;
-import com.kevitv.game.utils.Log;
-
 public class World {
 
     private Tile[][] tiles;
+    public int sizeX, sizeY;
 
     public World(int x, int y) {
+
+        sizeX=x;
+        sizeY=y;
 
         tiles = new Tile[x][y];
 

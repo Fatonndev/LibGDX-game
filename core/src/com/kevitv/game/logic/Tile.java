@@ -5,7 +5,7 @@ import com.kevitv.game.model.Block;
 public class Tile {
 
     public short x, y;
-    public Block block = new Block("air");
+    public Block block = new Block("wall");
 
     public Tile(int x, int y) {
         this.x = (short)x;
