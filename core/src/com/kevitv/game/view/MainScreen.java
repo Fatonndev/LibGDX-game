@@ -10,9 +10,7 @@ import com.kevitv.game.content.Blocks;
 import com.kevitv.game.control.CameraControl;
 import com.kevitv.game.logic.Draw;
 import com.kevitv.game.logic.World;
-import com.kevitv.game.model.Floor;
 import com.kevitv.game.utils.Assets;
-import com.kevitv.game.utils.Log;
 import com.kevitv.game.utils.TextManager;
 
 public class MainScreen implements Screen {
@@ -20,9 +18,10 @@ public class MainScreen implements Screen {
     public static float deltaCff;
     public static SpriteBatch batch;
     public static TextureAtlas textureAtlas;
-    public static World world = new World(100,100);
+    public static World world = new World(200,200);
     public static int WIDTH, HEIGHT;
     public static OrthographicCamera camera;
+    public static float aspectRatio;
 
     private CameraControl cameraControl;
 
@@ -39,6 +38,21 @@ public class MainScreen implements Screen {
         Gdx.input.setInputProcessor(cameraControl);
     }
 
+    public static long gcm(long a, long b) {
+        return b == 0 ? a : gcm(b, a % b); // Not bad for one line of code :)
+    }
+
+    public static int sizeY(long a, long b) {
+        long gcm = gcm(a, b);
+        return (int) (a / gcm);
+    }
+
+    public static int sizeX(long a, long b) {
+        long gcm = gcm(a, b);
+        return (int) (b / gcm);
+    }
+
+
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0,0,0,1);
@@ -51,12 +65,10 @@ public class MainScreen implements Screen {
         cameraControl.update();
 
         world.tile(2,1).setBlock(Blocks.wall);
-        world.tile(1,1).setBlock(Blocks.grass);
         world.tile(1,2).setBlock(Blocks.grassRock);
         world.tile(1,3).setBlock(Blocks.wall);
         world.tile(2,3).setBlock(Blocks.wall);
 
-        Log.info(world.tile(1,1).block.isFloor);
         batch.end();
 
         if(ScreenManager.getCurrentUpdate()!=null)
@@ -75,7 +87,7 @@ public class MainScreen implements Screen {
         if(ScreenManager.getCurrentScreen()!=null)
             ScreenManager.getCurrentScreen().resize(width,height);
 
-        float aspectRatio = (float) height / width;
+        aspectRatio = (float) height / width;
         camera = new OrthographicCamera(height, height*aspectRatio);
         camera.position.set(height/2,height*aspectRatio/2,0);
         camera.update();

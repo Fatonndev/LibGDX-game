@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 
-		config.height=480;
-		config.width=850;
+		config.height=720;
+		config.width=1280;
 		config.foregroundFPS=100;
 		config.vSyncEnabled=false;
 

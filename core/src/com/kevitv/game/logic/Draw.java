@@ -10,10 +10,25 @@ public class Draw {
 
         for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
             for(int yi = 0; yi < MainScreen.world.sizeY; yi++) {
-
-                Sprite obj = MainScreen.world.tile(xi, yi).block.object;
+                Sprite obj = MainScreen.world.tile(xi, yi).floor.object;
                 obj.draw(MainScreen.batch);
+            }
+        }
 
+        for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
+            for(int yi = 0; yi < MainScreen.world.sizeY; yi++)
+                if(!MainScreen.world.tile(xi, yi).block.name.equals("air")) {
+                    Sprite obj = MainScreen.world.tile(xi, yi).block.shadow;
+                    obj.draw(MainScreen.batch);
+                }
+            }
+
+        for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
+            for(int yi = 0; yi < MainScreen.world.sizeY; yi++) {
+                if(!MainScreen.world.tile(xi, yi).block.name.equals("air")) {
+                    Sprite obj = MainScreen.world.tile(xi, yi).block.object;
+                    obj.draw(MainScreen.batch);
+                }
             }
         }
 

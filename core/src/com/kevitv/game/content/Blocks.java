@@ -11,19 +11,15 @@ public class Blocks {
 
     public static void load() {
         air = new Floor("air"){{
-
         }};
 
         grass = new Floor("grass"){{
-
         }};
 
         wall = new Block("wall"){{
-
         }};
 
         grassRock = new Block("grassRock"){{
-
         }};
     }
 
