@@ -26,4 +26,8 @@ public class TextManager {
 
         font.draw(batch, glyphLayout, width - width/15f, height*0.95f);
     }
+
+    public static void dispose() {
+        font.dispose();
+    }
 }

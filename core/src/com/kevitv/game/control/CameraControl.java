@@ -1,32 +1,11 @@
 package com.kevitv.game.control;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
-import com.kevitv.game.Main;
 import com.kevitv.game.content.Blocks;
-import com.kevitv.game.logic.Tile;
-import com.kevitv.game.logic.World;
-import com.kevitv.game.utils.Log;
 import com.kevitv.game.view.MainScreen;
 
 public class CameraControl implements InputProcessor {
-
-    public void update() {
-        MainScreen.batch.setProjectionMatrix(MainScreen.camera.combined);
-
-        if(Gdx.input.isKeyPressed(Input.Keys.W))
-            MainScreen.camera.position.set(MainScreen.camera.position.x, MainScreen.camera.position.y+2f, MainScreen.camera.position.z);
-        if(Gdx.input.isKeyPressed(Input.Keys.S))
-            MainScreen.camera.position.set(MainScreen.camera.position.x, MainScreen.camera.position.y-2f, MainScreen.camera.position.z);
-        if(Gdx.input.isKeyPressed(Input.Keys.A))
-            MainScreen.camera.position.set(MainScreen.camera.position.x-2f, MainScreen.camera.position.y, MainScreen.camera.position.z);
-        if(Gdx.input.isKeyPressed(Input.Keys.D))
-            MainScreen.camera.position.set(MainScreen.camera.position.x+2f, MainScreen.camera.position.y, MainScreen.camera.position.z);
-
-        MainScreen.camera.update();
-    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -46,19 +25,25 @@ public class CameraControl implements InputProcessor {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
-        float blockLength = 56f / MainScreen.camera.zoom;
+        float blockLength = 32 / MainScreen.camera.zoom / MainScreen.aspectRatio;
         float blockLength2 = 32;
-        int x = (int) (screenX / blockLength);
-        int y = (int) ((MainScreen.HEIGHT-screenY)/blockLength);
+        float x = (screenX / blockLength);
+        float y = (MainScreen.HEIGHT-screenY)/blockLength;
 
-        int xx = (int) ((MainScreen.camera.position.x - MainScreen.HEIGHT/2 * MainScreen.camera.zoom) / blockLength2);
-        x+=xx;
-        int yy = (int) ((MainScreen.camera.position.y - MainScreen.HEIGHT*MainScreen.aspectRatio/2 * MainScreen.camera.zoom) / blockLength2);
-        y+=yy;
+        x+= (MainScreen.camera.position.x - MainScreen.HEIGHT/2 * MainScreen.camera.zoom) / blockLength2;
+        y+= (MainScreen.camera.position.y - MainScreen.HEIGHT*MainScreen.aspectRatio/2 * MainScreen.camera.zoom) / blockLength2;
 
-        Log.info("MouseX: "+screenX+" XX: "+xx+" BlockLength2: "+32 / MainScreen.camera.zoom+" ZOOM: "+MainScreen.camera.zoom+" X: "+x);
-        if (MainScreen.world.sizeX > x && MainScreen.world.sizeY > y && 0 <= x && 0 <= y) {
-            MainScreen.world.tile(x, y).setBlock(Blocks.wall);
+        int X = (int) x;
+        int Y = (int) y;
+
+        if (button == Input.Buttons.LEFT)
+        if (MainScreen.world.sizeX > X && MainScreen.world.sizeY > Y && 0 <= X && 0 <= Y) {
+            MainScreen.world.tile(X, Y).setBlock(Blocks.wall);
+        }
+
+        if (button == Input.Buttons.RIGHT)
+        if (MainScreen.world.sizeX > X && MainScreen.world.sizeY > Y && 0 <= X && 0 <= Y) {
+            MainScreen.world.tile(X, Y).setBlock(Blocks.air);
         }
 
         return false;

@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.kevitv.game.content.Blocks;
 import com.kevitv.game.control.CameraControl;
+import com.kevitv.game.control.PlayerControl;
 import com.kevitv.game.logic.Draw;
 import com.kevitv.game.logic.World;
+import com.kevitv.game.model.Player;
 import com.kevitv.game.utils.Assets;
 import com.kevitv.game.utils.TextManager;
 
@@ -22,8 +24,7 @@ public class MainScreen implements Screen {
     public static int WIDTH, HEIGHT;
     public static OrthographicCamera camera;
     public static float aspectRatio;
-
-    private CameraControl cameraControl;
+    public static Player player;
 
     public void setTextureAtlas(TextureAtlas textureAtlas) {
         this.textureAtlas = textureAtlas;
@@ -34,22 +35,7 @@ public class MainScreen implements Screen {
         TextManager.initialize(300,300);
         batch = new SpriteBatch();
         ScreenManager.setScreen(new MenuScreen());
-        cameraControl = new CameraControl();
-        Gdx.input.setInputProcessor(cameraControl);
-    }
-
-    public static long gcm(long a, long b) {
-        return b == 0 ? a : gcm(b, a % b); // Not bad for one line of code :)
-    }
-
-    public static int sizeY(long a, long b) {
-        long gcm = gcm(a, b);
-        return (int) (a / gcm);
-    }
-
-    public static int sizeX(long a, long b) {
-        long gcm = gcm(a, b);
-        return (int) (b / gcm);
+        player = new Player();
     }
 
 
@@ -61,8 +47,9 @@ public class MainScreen implements Screen {
         batch.begin();
 
         Draw.draw();
+        player.draw();
         TextManager.displayMessage(batch);
-        cameraControl.update();
+        PlayerControl.update();
 
         world.tile(2,1).setBlock(Blocks.wall);
         world.tile(1,2).setBlock(Blocks.grassRock);
@@ -121,5 +108,6 @@ public class MainScreen implements Screen {
             ScreenManager.getCurrentScreen().dispose();
         batch.dispose();
         Assets.dispose();
+        TextManager.dispose();
     }
 }

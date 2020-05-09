@@ -37,7 +37,7 @@ public class Block implements Cloneable {
         texture = Assets.getTexture(name);
 
         object = new Sprite(texture);
-        object.setSize(32*size,32*size);
+        object.setSize(32.04f*size,32.04f*size);
         object.setOrigin(32*size/2f, 32*size/2f);
         object.setPosition(32*x,32*y);
 
