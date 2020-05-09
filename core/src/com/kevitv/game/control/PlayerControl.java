@@ -3,7 +3,6 @@ package com.kevitv.game.control;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.kevitv.game.model.Player;
-import com.kevitv.game.utils.Log;
 import com.kevitv.game.view.MainScreen;
 
 public class PlayerControl {
@@ -12,24 +11,31 @@ public class PlayerControl {
     public static CameraControl cameraControl = new CameraControl();
 
     public static void update() {
+
         MainScreen.batch.setProjectionMatrix(MainScreen.camera.combined);
-        Gdx.input.setInputProcessor(cameraControl);
+        MainScreen.camera.position.set(Player.x, Player.y, 0);
+        MainScreen.camera.update();
 
         if(Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)) {
             Player.x -= player.speed * MainScreen.deltaCff * 60;
             Player.y += player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() < 45f) {
+
+            if (player.object.getRotation() <= 45f)
                 player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
-            } else player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 30);
+            if(player.object.getRotation() > 45f)
+                player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
+
             return;
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D)) {
             Player.x += player.speed * MainScreen.deltaCff * 60;
             Player.y += player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() > -45f) {
+            if (player.object.getRotation() >= -45f) {
                 player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            } else player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 30);
+            }
+            if(player.object.getRotation() < -45f)
+                player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
             return;
         }
 
@@ -37,8 +43,8 @@ public class PlayerControl {
             Player.x -= player.speed * MainScreen.deltaCff * 60;
             Player.y -= player.speed * MainScreen.deltaCff * 60;
             if (player.object.getRotation() < 135f) {
-                player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
-            } else player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 30);
+                player.object.rotate(player.rotateSpeed * MainScreen.deltaCff * 60);
+            }
             return;
         }
 
@@ -47,7 +53,7 @@ public class PlayerControl {
             Player.y -= player.speed * MainScreen.deltaCff * 60;
             if (player.object.getRotation() > -135f) {
                 player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            } else player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 30);
+            }
             return;
         }
 
@@ -65,14 +71,14 @@ public class PlayerControl {
             Player.x += player.speed * MainScreen.deltaCff * 60;
             if (player.object.getRotation() > -90f) {
                 player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            } else player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 30);
+            }
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.A)) {
             Player.x -= player.speed * MainScreen.deltaCff * 60;
             if (player.object.getRotation() < 90f) {
                 player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
-            } else player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 30);
+            }
         }
 
         if(Gdx.input.isKeyPressed(Input.Keys.S)) {
@@ -89,7 +95,5 @@ public class PlayerControl {
             }
         }
 
-
-        MainScreen.camera.update();
     }
 }

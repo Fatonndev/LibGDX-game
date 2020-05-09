@@ -36,6 +36,7 @@ public class MainScreen implements Screen {
         batch = new SpriteBatch();
         ScreenManager.setScreen(new MenuScreen());
         player = new Player();
+        Gdx.input.setInputProcessor(PlayerControl.cameraControl);
     }
 
 

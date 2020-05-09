@@ -8,7 +8,7 @@ import com.kevitv.game.view.MainScreen;
 public class Player {
 
     public static float x, y;
-    public float speed = 1.8f;
+    public float speed = 2f;
     public float rotateSpeed = 3.4f;
     public Sprite object;
 
