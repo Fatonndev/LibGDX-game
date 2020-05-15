@@ -4,13 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.kevitv.game.content.Blocks;
-import com.kevitv.game.model.Player;
+import com.kevitv.game.model.Block;
 import com.kevitv.game.utils.Map;
 import com.kevitv.game.view.MainScreen;
 
 public class CameraControl implements InputProcessor {
 
     public static float cameraX, cameraY;
+    public static Block currentBlock = Blocks.wall;
 
     public static void update() {
 
@@ -41,6 +42,8 @@ public class CameraControl implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        if (keycode == Input.Keys.NUM_1) currentBlock = Blocks.wall;
+        if (keycode == Input.Keys.NUM_2) currentBlock = Blocks.grassRock;
         return false;
     }
 
@@ -69,7 +72,7 @@ public class CameraControl implements InputProcessor {
 
         if (button == Input.Buttons.LEFT)
         if (MainScreen.world.sizeX > X && MainScreen.world.sizeY > Y && 0 <= X && 0 <= Y) {
-            MainScreen.world.tile(X, Y).setBlock(Blocks.wall);
+            MainScreen.world.tile(X, Y).setBlock(currentBlock);
         }
 
         if (button == Input.Buttons.RIGHT)
