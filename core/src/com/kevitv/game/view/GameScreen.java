@@ -6,6 +6,7 @@ import com.kevitv.game.control.CameraControl;
 import com.kevitv.game.control.PlayerControl;
 import com.kevitv.game.logic.Draw;
 import com.kevitv.game.utils.TextManager;
+import com.kevitv.game.utils.UI;
 
 public class GameScreen extends Screen{
 
@@ -25,6 +26,7 @@ public class GameScreen extends Screen{
         TextManager.displayMessage("FPS: "+ Gdx.graphics.getFramesPerSecond());
         PlayerControl.update();
         CameraControl.update();
+        UI.drawCurrentBlock();
         batch.end();
     }
 
