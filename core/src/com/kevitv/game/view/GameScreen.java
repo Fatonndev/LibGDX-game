@@ -7,22 +7,24 @@ import com.kevitv.game.control.PlayerControl;
 import com.kevitv.game.logic.Draw;
 import com.kevitv.game.utils.TextManager;
 
-public class MenuScreen extends Screen{
+public class GameScreen extends Screen{
 
     @Override
     public void create() {
-
     }
 
     @Override
     public void show() {
-
     }
 
     @Override
     public void render(SpriteBatch batch) {
         batch.begin();
+        Draw.draw();
+        MainScreen.player.draw();
         TextManager.displayMessage("FPS: "+ Gdx.graphics.getFramesPerSecond());
+        PlayerControl.update();
+        CameraControl.update();
         batch.end();
     }
 
@@ -50,4 +52,5 @@ public class MenuScreen extends Screen{
     public void dispose() {
 
     }
+
 }

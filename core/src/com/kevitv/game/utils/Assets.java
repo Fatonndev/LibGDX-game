@@ -8,9 +8,19 @@ import com.kevitv.game.Main;
 public class Assets {
 
     public static AssetManager manager;
+    public static void check(TextureRegion textureRegion) {
+        textureRegion.getU();
+    }
 
     public static TextureRegion getTexture(String name) {
-        return Main.textureAtlas.findRegion(name);
+        TextureRegion textureRegion;
+        try {
+            check(Main.textureAtlas.findRegion(name));
+            textureRegion = Main.textureAtlas.findRegion(name);
+        } catch (NullPointerException a) {
+            return Main.textureAtlas.findRegion("null");
+        }
+        return textureRegion;
     }
 
     public Assets() {

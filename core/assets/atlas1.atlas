@@ -1,69 +1,76 @@
 
 atlas1.png
-size: 64,32
+size: 256,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-air
-  rotate: false
-  xy: 8, 12
-  size: 2, 2
-  orig: 2, 2
-  offset: 0, 0
-  index: -1
 bullet
   rotate: false
-  xy: 50, 28
-  size: 4, 4
-  orig: 4, 4
+  xy: 216, 30
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+enemy
+  rotate: false
+  xy: 0, 0
+  size: 64, 64
+  orig: 64, 64
   offset: 0, 0
   index: -1
 grass
   rotate: false
-  xy: 34, 16
-  size: 16, 16
-  orig: 16, 16
+  xy: 184, 32
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 grass-1
   rotate: false
-  xy: 18, 16
-  size: 16, 16
-  orig: 16, 16
+  xy: 152, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 grassRock
   rotate: false
-  xy: 34, 0
-  size: 16, 16
-  orig: 16, 16
+  xy: 184, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 null
   rotate: false
-  xy: 0, 6
-  size: 8, 8
-  orig: 8, 8
+  xy: 120, 0
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 player
   rotate: false
-  xy: 18, 0
-  size: 16, 16
-  orig: 16, 16
+  xy: 64, 8
+  size: 56, 56
+  orig: 56, 56
+  offset: 0, 0
+  index: -1
+sand
+  rotate: false
+  xy: 120, 32
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1
 shadow
   rotate: false
-  xy: 0, 14
+  xy: 216, 46
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 wall
   rotate: false
-  xy: 0, 0
-  size: 6, 6
-  orig: 6, 6
+  xy: 152, 32
+  size: 32, 32
+  orig: 32, 32
   offset: 0, 0
   index: -1

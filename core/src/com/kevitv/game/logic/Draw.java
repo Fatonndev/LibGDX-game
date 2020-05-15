@@ -8,6 +8,8 @@ public class Draw {
 
     public static void draw() {
 
+        if(MainScreen.world == null) return;
+
         for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
             for(int yi = 0; yi < MainScreen.world.sizeY; yi++) {
                 Sprite obj = MainScreen.world.tile(xi, yi).floor.object;
@@ -21,7 +23,7 @@ public class Draw {
                     Sprite obj = MainScreen.world.tile(xi, yi).block.shadow;
                     obj.draw(MainScreen.batch);
                 }
-            }
+        }
 
         for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
             for(int yi = 0; yi < MainScreen.world.sizeY; yi++) {
@@ -31,5 +33,6 @@ public class Draw {
                 }
             }
         }
+
     }
 }

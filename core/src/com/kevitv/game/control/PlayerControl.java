@@ -12,88 +12,60 @@ public class PlayerControl {
 
     public static void update() {
 
-        MainScreen.batch.setProjectionMatrix(MainScreen.camera.combined);
-        MainScreen.camera.position.set(Player.x, Player.y, 0);
-        MainScreen.camera.update();
+        Player.x += (CameraControl.cameraX-Player.x) / (player.speed / 100) * MainScreen.deltaCff ;
+        Player.y += (CameraControl.cameraY-Player.y) / (player.speed / 100) * MainScreen.deltaCff ;
 
-        if(Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)) {
-            Player.x -= player.speed * MainScreen.deltaCff * 60;
-            Player.y += player.speed * MainScreen.deltaCff * 60;
-
-            if (player.object.getRotation() <= 45f)
-                player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
-            if(player.object.getRotation() > 45f)
-                player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.A)) {
+            if(player.rotation > 135f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+            if(player.rotation < 135f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
             return;
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D)) {
-            Player.x += player.speed * MainScreen.deltaCff * 60;
-            Player.y += player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() >= -45f) {
-                player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
-            if(player.object.getRotation() < -45f)
-                player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && Gdx.input.isKeyPressed(Input.Keys.D)) {
+            if(player.rotation > 215f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+            if(player.rotation < 215f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
             return;
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.A)) {
-            Player.x -= player.speed * MainScreen.deltaCff * 60;
-            Player.y -= player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() < 135f) {
-                player.object.rotate(player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
+        if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.A)) {
+            if(player.rotation > 45f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+            if(player.rotation < 45f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
             return;
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.D)) {
-            Player.x += player.speed * MainScreen.deltaCff * 60;
-            Player.y -= player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() > -135f) {
-                player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
-            return;
+        if (Gdx.input.isKeyPressed(Input.Keys.S) && Gdx.input.isKeyPressed(Input.Keys.D)) {
+            if(player.rotation > 315f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+            if(player.rotation < 315f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
-            Player.y += player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() > 0.1f) {
-                player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
-            if (player.object.getRotation() < -0.1f) {
-                player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
+    }
+
+    public static void WA() {
+
+    }
+    public static void WD() {
+
+    }
+    public static void SA() {
+
+    }
+    public static void SD() {
+
+    }
+    public static void W() {
+        if(player.rotation > 180f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+        if(player.rotation < 180f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
+    }
+    public static void A() {
+        if(player.rotation > 90f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+        if(player.rotation < 90f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
+    }
+    public static void S() {
+        if(player.rotation > 180f) {
+            if (player.rotation < 360f) player.rotation += player.rotateSpeed*MainScreen.deltaCff;
+        } else {
+            if (player.rotation > 0f) player.rotation -= player.rotateSpeed*MainScreen.deltaCff;
         }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
-            Player.x += player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() > -90f) {
-                player.object.rotate( -player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-            Player.x -= player.speed * MainScreen.deltaCff * 60;
-            if (player.object.getRotation() < 90f) {
-                player.object.rotate( player.rotateSpeed * MainScreen.deltaCff * 60);
-            }
-        }
-
-        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-            Player.y -= player.speed * MainScreen.deltaCff * 60;
-
-            if(player.object.getRotation() > 0) {
-                if (player.object.getRotation() < 180f) {
-                    player.object.rotate(player.rotateSpeed * MainScreen.deltaCff * 60);
-                }
-            } else {
-                if (player.object.getRotation() > -180f) {
-                    player.object.rotate(-player.rotateSpeed * MainScreen.deltaCff * 60);
-                }
-            }
-        }
-
+    }
+    public static void D() {
+        if(player.rotation > 270f) player.rotation-=player.rotateSpeed*MainScreen.deltaCff;
+        if(player.rotation < 270f) player.rotation+=player.rotateSpeed*MainScreen.deltaCff;
     }
 }

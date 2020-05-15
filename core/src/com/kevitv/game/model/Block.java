@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Polygon;
 import com.kevitv.game.utils.Assets;
+import com.kevitv.game.utils.Log;
 
 public class Block implements Cloneable {
 
@@ -12,7 +13,6 @@ public class Block implements Cloneable {
     public int y = 0;
     public String name = "null";
     public TextureRegion texture;
-    public Polygon bounds;
     public Sprite object;
     public Sprite shadow;
 
@@ -34,6 +34,7 @@ public class Block implements Cloneable {
     }
 
     public void load() {
+        if(name.equals("air")) return;
         texture = Assets.getTexture(name);
 
         object = new Sprite(texture);
@@ -45,10 +46,6 @@ public class Block implements Cloneable {
         shadow.setSize(32*size+4,32*size+4);
         shadow.setOrigin((32*size+4)/2f, (32*size+4)/2f);
         shadow.setPosition(32*x-2,32*y-2);
-
-        bounds = new Polygon(new float[]{0f, 0f, 32f*size, 0f, 32f*size, 32f*size, 0f, 32f*size});
-        bounds.setPosition(32*x, 32*y);
-        bounds.setOrigin(32*size/2f, 64*size/2f);
     }
 
 }

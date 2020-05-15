@@ -1,11 +1,43 @@
 package com.kevitv.game.control;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.kevitv.game.content.Blocks;
+import com.kevitv.game.model.Player;
+import com.kevitv.game.utils.Map;
 import com.kevitv.game.view.MainScreen;
 
 public class CameraControl implements InputProcessor {
+
+    public static float cameraX, cameraY;
+
+    public static void update() {
+
+        if(Gdx.input.isKeyPressed(Input.Keys.W)) {
+            cameraY += MainScreen.deltaCff * MainScreen.player.speed * 7;
+            PlayerControl.W();
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+            cameraY -= MainScreen.deltaCff * MainScreen.player.speed * 7;
+            PlayerControl.S();
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.A)) {
+            cameraX -= MainScreen.deltaCff * MainScreen.player.speed * 7;
+            PlayerControl.A();
+        }
+
+        if(Gdx.input.isKeyPressed(Input.Keys.D)) {
+            cameraX += MainScreen.deltaCff * MainScreen.player.speed * 7;
+            PlayerControl.D();
+        }
+
+        MainScreen.batch.setProjectionMatrix(MainScreen.camera.combined);
+        MainScreen.camera.position.set(cameraX, cameraY, 0);
+        MainScreen.camera.update();
+    }
 
     @Override
     public boolean keyDown(int keycode) {
@@ -26,12 +58,11 @@ public class CameraControl implements InputProcessor {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
         float blockLength = 32 / MainScreen.camera.zoom / MainScreen.aspectRatio;
-        float blockLength2 = 32;
         float x = (screenX / blockLength);
         float y = (MainScreen.HEIGHT-screenY)/blockLength;
 
-        x+= (MainScreen.camera.position.x - MainScreen.HEIGHT/2 * MainScreen.camera.zoom) / blockLength2;
-        y+= (MainScreen.camera.position.y - MainScreen.HEIGHT*MainScreen.aspectRatio/2 * MainScreen.camera.zoom) / blockLength2;
+        x += (MainScreen.camera.position.x - MainScreen.HEIGHT/2 * MainScreen.camera.zoom) / 32;
+        y += (MainScreen.camera.position.y - MainScreen.HEIGHT*MainScreen.aspectRatio/2 * MainScreen.camera.zoom) / 32;
 
         int X = (int) x;
         int Y = (int) y;
@@ -48,6 +79,7 @@ public class CameraControl implements InputProcessor {
 
         return false;
     }
+
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         return false;
@@ -65,10 +97,11 @@ public class CameraControl implements InputProcessor {
 
     @Override
     public boolean scrolled(int amount) {
-        if (amount == 1) MainScreen.camera.zoom = MainScreen.camera.zoom+0.13f;
-        else MainScreen.camera.zoom = MainScreen.camera.zoom-0.13f;
-        MainScreen.camera.update();
-        MainScreen.batch.setProjectionMatrix(MainScreen.camera.combined);
+        Map.save();
+        if (amount == 1) {
+            if(MainScreen.camera.zoom < 1.5f) MainScreen.camera.zoom = MainScreen.camera.zoom+0.13f;
+        }
+        else if(MainScreen.camera.zoom > 0.5f) MainScreen.camera.zoom = MainScreen.camera.zoom-0.13f;
         return false;
     }
 }

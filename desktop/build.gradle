@@ -4,25 +4,27 @@ sourceCompatibility = 1.6
 sourceSets.main.java.srcDirs = [ "src/" ]
 
 project.ext.mainClassName = "com.kevitv.game.desktop.DesktopLauncher"
-project.ext.assetsDir = new File("../core/assets");
+project.ext.assetsDir = new File("../core/assets/");
+
 
 task run(dependsOn: classes, type: JavaExec) {
-    main = project.mainClassName
+    main = project.ext.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
-    workingDir = project.assetsDir
-    ignoreExitValue = true
+    workingDir = project.ext.assetsDir
+    ignoreExitValue = true as JavaExecSpec
 }
 
-task dist(type: Jar) {
+task dist(type: Jar, dependsOn: classes) {
     from files(sourceSets.main.output.classesDirs.filter {true})
     from files(sourceSets.main.output.resourcesDir)
     from {configurations.compile.collect {zipTree(it)}}
-    from files(project.assetsDir);
- 
+    from file(project.ext.assetsDir);
+
     manifest {
-        attributes 'Main-Class': project.mainClassName
+        attributes 'Main-Class': "com.kevitv.game.desktop.DesktopLauncher"
     }
+
 }
 
 dist.dependsOn classes

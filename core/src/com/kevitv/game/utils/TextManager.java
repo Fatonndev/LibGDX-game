@@ -3,28 +3,31 @@ package com.kevitv.game.utils;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.kevitv.game.view.MainScreen;
 
 public class TextManager {
 
     static BitmapFont font;
-    static float width,height;
+    static float width, height;
 
     public static void initialize(float width,float height){
 
         font = new BitmapFont(Gdx.files.internal("fonts/font.fnt"));
-        TextManager.width  = width;
+        TextManager.width = width;
         TextManager.height = height;
-        // масштабируем размер шрифта в соответсвии с шириной экрана
-        font.getData().setScale(width/500f);
+
+        font.getData().scaleX=MainScreen.aspectRatio;
+        font.getData().scaleY=MainScreen.aspectRatio;
+        Log.info(font.getData().scaleY);
+
     }
 
-    public static void displayMessage(SpriteBatch batch){
+    public static void displayMessage(String text){
 
         GlyphLayout glyphLayout = new GlyphLayout();
-        glyphLayout.setText(font, "FPS: "+Gdx.graphics.getFramesPerSecond());
+        glyphLayout.setText(font, text);
 
-        font.draw(batch, glyphLayout, width - width/15f, height*0.95f);
+        font.draw(MainScreen.batch, glyphLayout, MainScreen.camera.position.x - MainScreen.WIDTH * MainScreen.aspectRatio / 2, MainScreen.camera.position.y + MainScreen.HEIGHT * MainScreen.aspectRatio / 2);
     }
 
     public static void dispose() {
