@@ -2,9 +2,8 @@ package com.kevitv.game.model;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Polygon;
 import com.kevitv.game.utils.Assets;
-import com.kevitv.game.utils.Log;
+import com.kevitv.game.view.MainScreen;
 
 public class Block implements Cloneable {
 
@@ -38,7 +37,7 @@ public class Block implements Cloneable {
         texture = Assets.getTexture(name);
 
         object = new Sprite(texture);
-        object.setSize(32.04f*size,32.04f*size);
+        object.setSize(32.05f*size,32.05f*size);
         object.setOrigin(32*size/2f, 32*size/2f);
         object.setPosition(32*x,32*y);
 
@@ -46,6 +45,17 @@ public class Block implements Cloneable {
         shadow.setSize(32*size+4,32*size+4);
         shadow.setOrigin((32*size+4)/2f, (32*size+4)/2f);
         shadow.setPosition(32*x-2,32*y-2);
+    }
+
+    public synchronized static void draw() {
+        for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
+            for(int yi = 0; yi < MainScreen.world.sizeY; yi++) {
+                if(!MainScreen.world.tile(xi, yi).block.name.equals("air")) {
+                    Sprite obj = MainScreen.world.tile(xi, yi).block.object;
+                    obj.draw(MainScreen.batch);
+                }
+            }
+        }
     }
 
 }

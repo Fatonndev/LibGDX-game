@@ -10,6 +10,8 @@ public class PlayerControl {
     public static Player player = MainScreen.player;
     public static CameraControl cameraControl = new CameraControl();
 
+    // Дорогой я_из_будущего! Пожалуйста, прости меня за этот код.
+
     public static void update() {
 
         Player.x += (CameraControl.cameraX-Player.x) / (player.speed / 100) * MainScreen.deltaCff ;

@@ -1,11 +1,13 @@
-package com.kevitv.game.utils;
+package com.kevitv.game.ui;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.kevitv.game.control.CameraControl;
+import com.kevitv.game.utils.Assets;
 import com.kevitv.game.view.MainScreen;
 
 public class UI {
+
     public static void drawCurrentBlock() {
         TextureRegion texture = Assets.getTexture(CameraControl.currentBlock.name);
 
@@ -24,4 +26,9 @@ public class UI {
         shadow.draw(MainScreen.batch);
         object.draw(MainScreen.batch);
     }
+
+    public static void drawButton () {
+
+    }
+
 }

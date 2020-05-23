@@ -13,7 +13,8 @@ import com.kevitv.game.logic.World;
 import com.kevitv.game.model.Player;
 import com.kevitv.game.utils.Assets;
 import com.kevitv.game.utils.Map;
-import com.kevitv.game.utils.TextManager;
+import com.kevitv.game.ui.TextManager;
+import com.kevitv.game.utils.Shaders;
 
 public class MainScreen implements Screen {
 
@@ -21,7 +22,7 @@ public class MainScreen implements Screen {
     public static SpriteBatch batch;
     public static TextureAtlas textureAtlas;
     public static World world = Map.load();
-    public static int WIDTH, HEIGHT;
+    public static int WIDTH = 1, HEIGHT = 1;
     public static OrthographicCamera camera;
     public static float aspectRatio;
     public static Player player;
@@ -36,6 +37,7 @@ public class MainScreen implements Screen {
         ScreenManager.setScreen(new GameScreen());
         player = new Player();
         Gdx.input.setInputProcessor(PlayerControl.cameraControl);
+        Shaders.load();
     }
 
 
@@ -87,10 +89,11 @@ public class MainScreen implements Screen {
 
     @Override
     public void dispose() {
-        if (ScreenManager.getCurrentScreen()!=null)
+        if (ScreenManager.getCurrentScreen() != null)
             ScreenManager.getCurrentScreen().dispose();
         batch.dispose();
         Assets.dispose();
         TextManager.dispose();
+        Shaders.dispose();
     }
 }

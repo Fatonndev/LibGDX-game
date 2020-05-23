@@ -6,54 +6,54 @@ filter: Nearest,Nearest
 repeat: none
 bullet
   rotate: false
-  xy: 216, 30
+  xy: 184, 48
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-enemy
-  rotate: false
-  xy: 0, 0
-  size: 64, 64
-  orig: 64, 64
-  offset: 0, 0
-  index: -1
 grass
-  rotate: false
-  xy: 184, 32
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-grass-1
-  rotate: false
-  xy: 152, 0
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-grassRock
-  rotate: false
-  xy: 184, 0
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-null
   rotate: false
   xy: 120, 0
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+grass-1
+  rotate: false
+  xy: 88, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+grassRock
+  rotate: false
+  xy: 152, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+null
+  rotate: false
+  xy: 56, 0
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 player
   rotate: false
-  xy: 64, 8
+  xy: 0, 8
   size: 56, 56
   orig: 56, 56
   offset: 0, 0
   index: -1
 sand
+  rotate: false
+  xy: 56, 32
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+sand-1
   rotate: false
   xy: 120, 32
   size: 32, 32
@@ -62,14 +62,14 @@ sand
   index: -1
 shadow
   rotate: false
-  xy: 216, 46
+  xy: 152, 14
   size: 18, 18
   orig: 18, 18
   offset: 0, 0
   index: -1
 wall
   rotate: false
-  xy: 152, 32
+  xy: 88, 32
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

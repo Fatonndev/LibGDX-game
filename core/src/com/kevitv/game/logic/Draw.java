@@ -1,6 +1,8 @@
 package com.kevitv.game.logic;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.kevitv.game.model.Block;
+import com.kevitv.game.model.Shadow;
 import com.kevitv.game.view.MainScreen;
 
 
@@ -17,22 +19,8 @@ public class Draw {
             }
         }
 
-        for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
-            for(int yi = 0; yi < MainScreen.world.sizeY; yi++)
-                if(!MainScreen.world.tile(xi, yi).block.name.equals("air")) {
-                    Sprite obj = MainScreen.world.tile(xi, yi).block.shadow;
-                    obj.draw(MainScreen.batch);
-                }
-        }
-
-        for(int xi = 0; xi < MainScreen.world.sizeX; xi++) {
-            for(int yi = 0; yi < MainScreen.world.sizeY; yi++) {
-                if(!MainScreen.world.tile(xi, yi).block.name.equals("air")) {
-                    Sprite obj = MainScreen.world.tile(xi, yi).block.object;
-                    obj.draw(MainScreen.batch);
-                }
-            }
-        }
+        Shadow.draw();
+        Block.draw();
 
     }
 }

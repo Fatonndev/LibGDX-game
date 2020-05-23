@@ -44,6 +44,7 @@ public class CameraControl implements InputProcessor {
     public boolean keyDown(int keycode) {
         if (keycode == Input.Keys.NUM_1) currentBlock = Blocks.wall;
         if (keycode == Input.Keys.NUM_2) currentBlock = Blocks.grassRock;
+        if (keycode == Input.Keys.NUM_3) currentBlock = Blocks.sand;
         return false;
     }
 

@@ -5,8 +5,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.kevitv.game.control.CameraControl;
 import com.kevitv.game.control.PlayerControl;
 import com.kevitv.game.logic.Draw;
-import com.kevitv.game.utils.TextManager;
-import com.kevitv.game.utils.UI;
+import com.kevitv.game.ui.TextManager;
+import com.kevitv.game.ui.UI;
 
 public class GameScreen extends Screen{
 
@@ -23,7 +23,7 @@ public class GameScreen extends Screen{
         batch.begin();
         Draw.draw();
         MainScreen.player.draw();
-        TextManager.displayMessage("FPS: "+ Gdx.graphics.getFramesPerSecond());
+        TextManager.displayMessage("FPS: "+ Gdx.graphics.getFramesPerSecond(), true, false, false, false);
         PlayerControl.update();
         CameraControl.update();
         UI.drawCurrentBlock();

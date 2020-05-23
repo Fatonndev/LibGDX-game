@@ -6,17 +6,18 @@ import com.kevitv.game.model.Floor;
 public class Blocks {
 
     public static Block
-    air, grass, sand,
-    wall, grassRock;
+            grass, sand,
+            air, wall, grassRock;
 
     public static void load() {
-        air = new Floor("air"){{
-        }};
 
         grass = new Floor("grass"){{
         }};
 
         sand = new Floor("sand"){{
+        }};
+
+        air = new Block("air"){{
         }};
 
         wall = new Block("wall"){{
